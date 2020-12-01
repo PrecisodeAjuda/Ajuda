@@ -38,6 +38,7 @@ public class Trabalho {
         }
 
         System.out.println();
+        
         //APARECER AS INFORMAÇÕES UM POR UM
         for (int j = 0; j < escritor.length; j++) {// Colunas
             for (int i = 0; i < escolaLiteraria.length; i++) {// Linhas
