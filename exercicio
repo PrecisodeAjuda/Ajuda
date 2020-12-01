@@ -1,0 +1,113 @@
+import java.util.Scanner;
+
+public class Trabalho {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+
+        String livros[][];
+        String escolaLiteraria[] = {"Romantismo", "Realismo", "Modernismo"};
+        String escritor[] = {"Machado de Assis", "Aluíso Azevedo", "Jorge Amado"};
+
+        int qntEscolas = escolaLiteraria.length, qntEscritor = escritor.length;
+        livros = new String[qntEscritor][qntEscolas];
+
+        // Cadastrar as informações de cada um
+        for (int j = 0; j < escritor.length; j++) {
+            for (int i = 0; i < escolaLiteraria.length; i++) {
+                System.out.println("Informe alguma obra literária de " + escritor[j] +
+                        " que pertence ao " + escolaLiteraria[i] + ":");
+                livros[i][j] = scan.nextLine();
+            }
+        }
+
+        System.out.print("\t\t\t");
+        for (int j = 0; j < escritor.length; j++) {
+            System.out.printf("%20s", escritor[j]);
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < escolaLiteraria.length; i++) {
+            System.out.print(escolaLiteraria[i] + "\t\t");
+            for (int j = 0; j < escritor.length; j++) {
+                System.out.print(livros[i][j] + "\t\t\t\t\t\t");
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+        //APARECER AS INFORMAÇÕES UM POR UM
+        for (int j = 0; j < escritor.length; j++) {// Colunas
+            for (int i = 0; i < escolaLiteraria.length; i++) {// Linhas
+                System.out.println(escritor[j] + ", " + escolaLiteraria[i] + ": " + livros[i][j]);
+            }
+        }
+
+        System.out.println();
+
+        //COMEÇA AS BUSCAS
+
+        String busca;
+        int posEscritor = -1, posEscola = -1;
+        //Pesquisa pela Coluna/Edifício
+        System.out.println("Informe o escritor para saber suas informações: ");
+        busca = scan.nextLine();
+
+        for (int i = 0; i < escritor.length; i++) {
+            if (busca.equalsIgnoreCase(escritor[i])) {
+                posEscritor = i;
+            }
+        }
+
+        if (posEscritor > -1) {
+            for (int i = 0; i < escolaLiteraria.length; i++) {
+                System.out.println(escolaLiteraria[i] + ": " + livros[i][posEscritor]);
+            }
+        } else {
+            System.out.println(busca + " não foi encontrado!\n");
+        }
+
+
+        System.out.println("\nInforme a escola literária para saber as informações: ");
+        String busca2 = scan.nextLine();
+
+
+        for (int i = 0; i < escolaLiteraria.length; i++) {
+            if (busca2.equalsIgnoreCase(escolaLiteraria[i])) {
+                posEscola = i;
+            }
+        }
+
+        if (posEscola > -1) {
+            for (int i = 0; i < escritor.length; i++) {
+                System.out.println(escritor[i] + ": " + livros[posEscola][i]);
+            }
+        } else {
+            System.out.println(busca2 + " não foi encontrado!\n");
+        }
+
+        System.out.println("\nInforme o Livro: ");
+        String busca3 = scan.nextLine();
+
+        for (int j = 0; j < escritor.length; j++) {
+            for (int i = 0; i < escolaLiteraria.length; i++) {
+                if (busca.equalsIgnoreCase(livros[i][j])) {
+                    posEscritor = j;
+                    posEscola = i;
+                }
+            }
+        }
+
+        if (posEscola > -1 && posEscritor > -1) {
+            System.out.println("\nO livro " + livros[posEscola][posEscritor] +
+                    " foi escrito por " + escritor[posEscritor] +
+                    " no " + escolaLiteraria[posEscola] + ".\n");
+        } else {
+            System.out.println(busca3 + " não foi encontrado!\n");
+        }
+
+            
+    }
+}
